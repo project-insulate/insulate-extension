@@ -1,6 +1,7 @@
 console.log("insulate-extension: content.js injected");
 
-// helper functions
+// ********* Helper functions ***********
+activeTabURL = '';
 
 // get metas by injecting this script into the webpage
 function getMetas() {
@@ -21,7 +22,7 @@ function getMetas() {
 
 // save meta values to local storage for popup.js to pick up
 function saveMetas(metas) {
-  chrome.storage.sync.set({ metas }, function () {
+  chrome.storage.local.set({ metas }, function () {
     console.log("Value is set to ", metas);
   });
 }
@@ -34,52 +35,58 @@ function checkIfBackendPushRequired(metas) {
   return false;
 }
 
-// **** run the main functionality ****
-// get all meta values needed
-metaValues = getMetas();
 
-
-saveMetas(metaValues);
-
-
-function init() {
-
+function initBlock() {
   if (checkIfBackendPushRequired(metaValues)) {
-
-    chrome.runtime.sendMessage({
-      msg: "updateToken"
-    }, function () {
-
-      chrome.storage.sync.get(['access_token'], function (result) {
-        console.log('Value is set to ' + result);
-
-        fetch("http://localhost:8000/api/block", {
-          method: "post",
-          body: JSON.stringify({
-            paymentPointer: metaValues.monetization,
-            clientId: metaValues.insulateId
-          }),
-          headers: {
-            "Authorization": `Bearer ${result.access_token}`,
-            "Content-Type": "application/json"
-          }
-        })
-          .then(async (response) => {
-            return await response.json();
-          })
-          .then(function (data) {
-            if (data.errors) {
-              throw new Error("Failed to add the block", data);
-            }
-            console.log("transactionId", data);
-            window.postMessage({ type: "insulateTransactionId", text: data.transactionId }, "*")
-          });
-      });
-
-    });
-
-
+    console.log("fetch latest access_token");
+    chrome.runtime.sendMessage({ accessTokenRequired: true });
   }
 }
 
-init();
+// ********* Main listener ***********
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+
+  // Case 1: Initialize the script
+  if (request.type === 'tab') {
+    activeTabURL = request.value.url;
+    main();
+  }
+
+  // Case 2: Request for access token
+  else if (request.type === 'access_token') {
+    console.log("listen for latest access_token push");
+    if (request.accessToken) {
+
+      fetch("http://localhost:8000/api/block", {
+        method: "post",
+        body: JSON.stringify({
+          paymentPointer: metaValues.monetization,
+          clientId: metaValues.insulateId
+        }),
+        headers: {
+          "Authorization": `Bearer ${request.accessToken}`,
+          "Content-Type": "application/json"
+        }
+      })
+        .then(async (response) => {
+          return await response.json();
+        })
+        .then(function (data) {
+          if (data.errors) {
+            throw new Error("Failed to add the block", data);
+          }
+          console.log("transactionId", data);
+          window.postMessage({ type: "insulateTransactionId", text: data.transactionId }, "*")
+        });
+    }
+  }
+})
+
+
+// main function called in case 1 inside the listener
+function main() {
+  metaValues = getMetas();
+  saveMetas(metaValues);
+  initBlock();
+}

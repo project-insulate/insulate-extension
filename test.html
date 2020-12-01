@@ -17,9 +17,7 @@
                     return;
 
                 if (event.data.type && (event.data.type == "insulateTransactionId")) {
-                    console.log("Page script received: " + event.data.text)
-                    console.log(event.data.text) // "Something message here"
-                    console.log("Yola!");
+                    console.log("insulateTransactionId received: " + event.data.text)
                 }
             }, false)
             // })

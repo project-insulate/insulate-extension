@@ -1,27 +1,4 @@
-var firebaseConfig = {
-  apiKey: "AIzaSyA2XPqup45dgwr2kY3Ia-Nh9LFCOUmCjd0",
-  authDomain: "project-insulate.firebaseapp.com",
-  databaseURL: "https://project-insulate.firebaseio.com",
-  projectId: "project-insulate",
-  storageBucket: "project-insulate.appspot.com",
-  messagingSenderId: "940006048159",
-  appId: "1:940006048159:web:c6e7a79481f87061f43daa",
-  measurementId: "G-WY11YRBL0B"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-chrome.storage.sync.get(["metas"], function (result) {
-  console.log("Value is set to ", result);
-  if (result.metas.monetization)
-    document.getElementById("p1").innerHTML = result.metas.monetization;
-  if (result.metas.insulateId)
-    document.getElementById("p2").innerHTML = result.metas.insulateId;
-});
-
-document.getElementById('login').onclick = login;
-document.getElementById('getInfo').onclick = getInfo;
-document.getElementById('logout').onclick = logout;
+// ********* Functions ***********
 
 function login() {
   // Step 1: Prepare URL fro Chrome Web Auth Flow
@@ -63,78 +40,52 @@ function login() {
           const customToken = data["customToken"];
 
           // Step 4
-          firebase.auth().signInWithCustomToken(customToken)
-            .then((user) => {
-              // Signed in
-              console.log("Login complete")
-              console.log(user)
-            })
-            .catch((error) => {
-              console.log("Login failed", error);
-            })
-
+          chrome.runtime.sendMessage({
+            customToken: customToken
+          });
         });
 
     });
-
-}
-
-function getInfo() {
-  // firebase.auth().currentUser.getIdToken(true)
-  //   .then(function (idToken) {
-  //     console.log("idtoken", idToken);
-  //   })
-
-  console.log("kiddan?")
-  const token = "kiddanToken";
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { token: token }, function (response) {
-      console.log(response.tokenSent);
-    });
-  });
-
 }
 
 function logout() {
-  firebase.auth().signOut().then(function () {
-    window.user = null;
-  }).catch(function (error) {
-    // An error happened.
-    console.error("logout failed", error)
+  chrome.runtime.sendMessage({
+    logout: true
   });
 }
-chrome.runtime.onMessage.addListener(
-  function (request, sender, sendResponse) {
-    if (request.msg === "updateToken") {
-      firebase.auth().currentUser.getIdToken(true)
-        .then(function (idToken) {
-          console.log("Updating idToken on refresh", idToken);
-          chrome.storage.sync.set({ access_token: idToken }, function () {
-            console.log('Value is set to ' + idToken);
-          });
-        })
+
+
+// ********* Setup on load ***********
+
+document.getElementById('login').onclick = login;
+document.getElementById('logout').onclick = logout;
+
+// Use to update the HTML accordingly
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  // Case 1: Listener for login complete
+  if (request.loginComplete) {
+    document.getElementById('login').style.display = "none";
+    document.getElementById('logout').style.display = "block";
+  }
+
+  // Case 2: Listener for logout complete
+  else if (request.logoutComplete) {
+    document.getElementById('login').style.display = "block";
+    document.getElementById('logout').style.display = "none";
+  }
+
+  // Case 3: Initial page load
+  else if (request.type === "userLoggedInCheck") {
+    if (request.userLoggedIn) {
+      document.getElementById('login').style.display = "none";
+      document.getElementById('logout').style.display = "block";
+    }
+    else {
+      document.getElementById('login').style.display = "block";
+      document.getElementById('logout').style.display = "none";
     }
   }
-);
+})
 
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    window.user = user;
-    console.log("logged in...")
-    firebase.auth().currentUser.getIdToken(true)
-      .then(function (idToken) {
-        console.log("idtoken", idToken);
-        // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        //   chrome.tabs.sendMessage(tabs[0].id, { token: idToken }, function (response) {
-        //     console.log(response);
-        //   });
-        // });
-        chrome.storage.sync.set({ access_token: idToken }, function () {
-          console.log('Value is set to ' + idToken);
-        });
-      })
-  } else {
-    // askForLogin();
-    console.log("askForLogin()");
-  }
-});
+// Request background script to find if a user is logged in or not on load
+chrome.runtime.sendMessage({ isUserLoggedIn: true })

@@ -8,8 +8,9 @@
     "default_title": "Insulate"
   },
   "background": {
-    // "page": "popup.html",
     "scripts": [
+      "firebase/firebase-app.js",
+      "firebase/firebase-auth.js",
       "background.js"
     ],
     "persistent": false
@@ -22,5 +23,4 @@
     "http://*/",
     "https://*/"
   ]
-  // "key": "kpafcniimffgahocmkkmjappffdmdapg"
 }
