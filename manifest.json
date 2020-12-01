@@ -1,0 +1,26 @@
+{
+  "name": "insulate-extension",
+  "description": "An extension to support Project Insulate",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Insulate"
+  },
+  "background": {
+    // "page": "popup.html",
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "identity",
+    "http://*/",
+    "https://*/"
+  ]
+  // "key": "kpafcniimffgahocmkkmjappffdmdapg"
+}

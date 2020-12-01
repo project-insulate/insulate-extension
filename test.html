@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <meta name="monetization" content="$ilp.uphold.com/H3NqAwkm9g3W">
+    <meta name="insulate-id" content="16ebdcd5b3067e95fe7146e5b15052dd27618615fb2296b5">
+
+    <script>
+        console.log("Test page");
+        if (document.monetization) {
+
+
+            // document.monetization.addEventListener('monetizationstart', (e) => {
+
+            window.addEventListener("message", function (event) {
+                // We only accept messages from ourselves
+                if (event.source != window)
+                    return;
+
+                if (event.data.type && (event.data.type == "insulateTransactionId")) {
+                    console.log("Page script received: " + event.data.text)
+                    console.log(event.data.text) // "Something message here"
+                    console.log("Yola!");
+                }
+            }, false)
+            // })
+        }
+
+        console.log("Test page 2");
+        if (document.monetization) {
+            document.monetization.addEventListener('monetizationstart', (e) => {
+                // console.log("Yola2!", e);
+            })
+        }
+
+
+
+
+    </script>
+</head>
+
+<body>
+    Test Page
+</body>
+
+</html>
