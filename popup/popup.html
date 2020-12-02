@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Project Insulate | Extension</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+
+  <div class="header">
+    <span class="font-weight-100">Project</span> Insulate <span class="version">v1.1.0</span>
+  </div>
+
+  <div class="footer">
+    <div id="logout-state">
+      <div class="signin-text">Let's connect using <b>Coil</b> to set up</div>
+      <img class="coil-signin" src="assets/coil_signin.png" id="login" />
+    </div>
+    <div id="login-state">
+      <div class="signin-text">You are connected via <b>Coil</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-tab">
+
+    <div class="active-text">Active tab information</div>
+
+    <div class="title">
+      Web Monetization
+      <span>
+        <img id="monetization-correct" class="icon"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMzViMTg3IiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzg1Ljc1IDIwMS43NS0xMzguNjY3OTY5IDEzOC42NjQwNjJjLTQuMTYwMTU2IDQuMTYwMTU3LTkuNjIxMDkzIDYuMjUzOTA3LTE1LjA4MjAzMSA2LjI1MzkwN3MtMTAuOTIxODc1LTIuMDkzNzUtMTUuMDgyMDMxLTYuMjUzOTA3bC02OS4zMzIwMzEtNjkuMzMyMDMxYy04LjM0Mzc1LTguMzM5ODQzLTguMzQzNzUtMjEuODI0MjE5IDAtMzAuMTY0MDYyIDguMzM5ODQzLTguMzQzNzUgMjEuODIwMzEyLTguMzQzNzUgMzAuMTY0MDYyIDBsNTQuMjUgNTQuMjUgMTIzLjU4NTkzOC0xMjMuNTgyMDMxYzguMzM5ODQzLTguMzQzNzUgMjEuODIwMzEyLTguMzQzNzUgMzAuMTY0MDYyIDAgOC4zMzk4NDQgOC4zMzk4NDMgOC4zMzk4NDQgMjEuODIwMzEyIDAgMzAuMTY0MDYyem0wIDAiIGZpbGw9IiNmYWZhZmEiIGRhdGEtb3JpZ2luYWw9IiNmYWZhZmEiIHN0eWxlPSIiPjwvcGF0aD48L2c+PC9zdmc+" />
+        <img id="monetization-wrong" class="icon"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjZjQ0MzM2IiBkYXRhLW9yaWdpbmFsPSIjZjQ0MzM2IiBzdHlsZT0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzUwLjI3MzQzOCAzMjAuMTA1NDY5YzguMzM5ODQzIDguMzQzNzUgOC4zMzk4NDMgMjEuODI0MjE5IDAgMzAuMTY3OTY5LTQuMTYwMTU3IDQuMTYwMTU2LTkuNjIxMDk0IDYuMjUtMTUuMDg1OTM4IDYuMjUtNS40NjA5MzggMC0xMC45MjE4NzUtMi4wODk4NDQtMTUuMDgyMDMxLTYuMjVsLTY0LjEwNTQ2OS02NC4xMDkzNzYtNjQuMTA1NDY5IDY0LjEwOTM3NmMtNC4xNjAxNTYgNC4xNjAxNTYtOS42MjEwOTMgNi4yNS0xNS4wODIwMzEgNi4yNS01LjQ2NDg0NCAwLTEwLjkyNTc4MS0yLjA4OTg0NC0xNS4wODU5MzgtNi4yNS04LjMzOTg0My04LjM0Mzc1LTguMzM5ODQzLTIxLjgyNDIxOSAwLTMwLjE2Nzk2OWw2NC4xMDkzNzYtNjQuMTA1NDY5LTY0LjEwOTM3Ni02NC4xMDU0NjljLTguMzM5ODQzLTguMzQzNzUtOC4zMzk4NDMtMjEuODI0MjE5IDAtMzAuMTY3OTY5IDguMzQzNzUtOC4zMzk4NDMgMjEuODI0MjE5LTguMzM5ODQzIDMwLjE2Nzk2OSAwbDY0LjEwNTQ2OSA2NC4xMDkzNzYgNjQuMTA1NDY5LTY0LjEwOTM3NmM4LjM0Mzc1LTguMzM5ODQzIDIxLjgyNDIxOS04LjMzOTg0MyAzMC4xNjc5NjkgMCA4LjMzOTg0MyA4LjM0Mzc1IDguMzM5ODQzIDIxLjgyNDIxOSAwIDMwLjE2Nzk2OWwtNjQuMTA5Mzc2IDY0LjEwNTQ2OXptMCAwIiBmaWxsPSIjZmFmYWZhIiBkYXRhLW9yaWdpbmFsPSIjZmFmYWZhIiBzdHlsZT0iIj48L3BhdGg+PC9nPjwvc3ZnPg==" />
+      </span>
+    </div>
+    <div id="monetization-correct-value" class="value">
+      <div class="value-title">Payment Pointer</div>
+      <span id="monetization-pointer"></span>
+    </div>
+    <div id="monetization-wrong-value" class="value">
+      <span>Payment pointer not found</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="info-tab">
+    <div class="title">
+      Insulated
+      <span>
+        <img id="insulated-correct" class="icon"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMzViMTg3IiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzg1Ljc1IDIwMS43NS0xMzguNjY3OTY5IDEzOC42NjQwNjJjLTQuMTYwMTU2IDQuMTYwMTU3LTkuNjIxMDkzIDYuMjUzOTA3LTE1LjA4MjAzMSA2LjI1MzkwN3MtMTAuOTIxODc1LTIuMDkzNzUtMTUuMDgyMDMxLTYuMjUzOTA3bC02OS4zMzIwMzEtNjkuMzMyMDMxYy04LjM0Mzc1LTguMzM5ODQzLTguMzQzNzUtMjEuODI0MjE5IDAtMzAuMTY0MDYyIDguMzM5ODQzLTguMzQzNzUgMjEuODIwMzEyLTguMzQzNzUgMzAuMTY0MDYyIDBsNTQuMjUgNTQuMjUgMTIzLjU4NTkzOC0xMjMuNTgyMDMxYzguMzM5ODQzLTguMzQzNzUgMjEuODIwMzEyLTguMzQzNzUgMzAuMTY0MDYyIDAgOC4zMzk4NDQgOC4zMzk4NDMgOC4zMzk4NDQgMjEuODIwMzEyIDAgMzAuMTY0MDYyem0wIDAiIGZpbGw9IiNmYWZhZmEiIGRhdGEtb3JpZ2luYWw9IiNmYWZhZmEiIHN0eWxlPSIiPjwvcGF0aD48L2c+PC9zdmc+" />
+        <img id="insulated-wrong" class="icon"
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjZjQ0MzM2IiBkYXRhLW9yaWdpbmFsPSIjZjQ0MzM2IiBzdHlsZT0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzUwLjI3MzQzOCAzMjAuMTA1NDY5YzguMzM5ODQzIDguMzQzNzUgOC4zMzk4NDMgMjEuODI0MjE5IDAgMzAuMTY3OTY5LTQuMTYwMTU3IDQuMTYwMTU2LTkuNjIxMDk0IDYuMjUtMTUuMDg1OTM4IDYuMjUtNS40NjA5MzggMC0xMC45MjE4NzUtMi4wODk4NDQtMTUuMDgyMDMxLTYuMjVsLTY0LjEwNTQ2OS02NC4xMDkzNzYtNjQuMTA1NDY5IDY0LjEwOTM3NmMtNC4xNjAxNTYgNC4xNjAxNTYtOS42MjEwOTMgNi4yNS0xNS4wODIwMzEgNi4yNS01LjQ2NDg0NCAwLTEwLjkyNTc4MS0yLjA4OTg0NC0xNS4wODU5MzgtNi4yNS04LjMzOTg0My04LjM0Mzc1LTguMzM5ODQzLTIxLjgyNDIxOSAwLTMwLjE2Nzk2OWw2NC4xMDkzNzYtNjQuMTA1NDY5LTY0LjEwOTM3Ni02NC4xMDU0NjljLTguMzM5ODQzLTguMzQzNzUtOC4zMzk4NDMtMjEuODI0MjE5IDAtMzAuMTY3OTY5IDguMzQzNzUtOC4zMzk4NDMgMjEuODI0MjE5LTguMzM5ODQzIDMwLjE2Nzk2OSAwbDY0LjEwNTQ2OSA2NC4xMDkzNzYgNjQuMTA1NDY5LTY0LjEwOTM3NmM4LjM0Mzc1LTguMzM5ODQzIDIxLjgyNDIxOS04LjMzOTg0MyAzMC4xNjc5NjkgMCA4LjMzOTg0MyA4LjM0Mzc1IDguMzM5ODQzIDIxLjgyNDIxOSAwIDMwLjE2Nzk2OWwtNjQuMTA5Mzc2IDY0LjEwNTQ2OXptMCAwIiBmaWxsPSIjZmFmYWZhIiBkYXRhLW9yaWdpbmFsPSIjZmFmYWZhIiBzdHlsZT0iIj48L3BhdGg+PC9nPjwvc3ZnPg==" />
+      </span>
+    </div>
+    <div id="insulated-correct-value" class="value">
+      <div class="value-title">Client ID</div>
+      <span id="insulated-id"></span>
+    </div>
+    <div id="insulated-wrong-value" class="value">
+      <span>Client ID not found</span>
+    </div>
+  </div>
+
+  <div id="login-state-2" class="footer-real">
+    <span id="logout" class="green-colour-link">Logout</span>
+  </div>
+
+  <div class="bottom-separator"></div>
+
+</body>
+<script type="text/javascript" src="popup.js"></script>
+
+</html>

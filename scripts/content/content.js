@@ -1,4 +1,4 @@
-console.log("insulate-extension: content.js injected");
+// console.log("insulate-extension: content.js injected");
 
 // ********* Helper functions ***********
 activeTabURL = '';

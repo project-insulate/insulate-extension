@@ -1,0 +1,109 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0px;
+    width: 300px;
+    color: #636363;
+}
+
+.header {
+    text-align: center;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 9px;
+    padding-top: 9px;
+    background: #ffffff;
+    color: #35B187;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.font-weight-100 {
+    font-weight: 100;
+}
+
+.header .version {
+    font-size: 10px;
+    font-weight: 100;
+    margin-left: 3px;
+    color: #636363;
+}
+
+.info-tab {
+    padding: 6px 30px 10px 30px;
+}
+.info-tab .title {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.info-tab .icon {
+    width: 20px;
+    float: right;
+    margin-right: 6px;
+    margin-bottom: 3px;
+}
+
+.info-tab .value {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.info-tab .value .value-title {
+    margin-top: 3px;
+    color: #3a923e;
+    font-size: 11px;
+}
+
+.divider {
+    margin: 9px 60px;
+    border: none;
+    border-top: 1px solid #f3f1f1;
+}
+
+img.coil-signin {
+    width: 180px;
+    cursor: pointer;
+    padding-top: 6px;
+    margin-left: calc(50% - 90px);
+}
+
+.footer {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-top: 1px solid #f1f1f1;
+    background: #f3f3f3;
+}
+
+.footer .signin-text {
+    text-align: center;
+    display: block;
+    padding: 3px 0px;
+    font-size: 12px;
+}
+
+.green-colour-link {
+    color: #35B187;
+    cursor: pointer;
+    font-weight: bold;
+    float: right;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.bottom-separator {
+    padding-bottom: 8px;
+}
+.active-text {
+    text-align: center;
+    display: block;
+    font-size: 11px;
+    color: #cacaca;
+    margin-bottom: 10px;
+    margin-top: 2px;
+}
+
+.footer-real {
+    border-top: 1px solid #f1f1f1;
+    padding-right: 15px;
+}
