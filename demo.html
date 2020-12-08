@@ -25,8 +25,11 @@
             return;
 
         if (event.data.type && (event.data.type == "insulateTransactionId")) {
-            console.log("insulateTransactionId received: " + event.data.text)
-            insulateIdElement.textContent = event.data.text;
+            let transactionId = event.data.text;
+            insulateIdElement.textContent = transactionId;
+            
+            // *** Make call to backend (provider) and send transactionId *** 
+            
         }
     }, false)
         // ----------------------- main event listener: end ---------------
