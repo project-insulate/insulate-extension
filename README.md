@@ -5,14 +5,6 @@ Project Insulate aims to protect an API call used by a provider to send data whe
 ## Chrome Web Store
 **TODO: insert extension live link**
 
-## Running locally
-To run Chrome extension locally, firstly:
-```
-git clone https://github.com/project-insulate/insulate-extension.git
-cd insulate-extension
-```
-You can find step-by-step information [here at Chrome Documentation](https://developer.chrome.com/extensions/getstarted) to set up development environment for the extension.
-
 ## Screenshots
 **TODO: add better screenshots**
 
@@ -34,6 +26,13 @@ Now, provider's backend can send this `transactionId` with the `clientSecret` an
 ### Case 2: Viewer
 Simply download the extension and sign in with Coil. Extension will automatically deal with updating Insulate backend whenever a page with valid `monetization` and `insulate-id` meta tags are found, and provider can provide you access **without** knowing who the user is, mainting the privacy of the user.
 
+## Running locally
+To run Chrome extension locally, firstly:
+```
+git clone https://github.com/project-insulate/insulate-extension.git
+cd insulate-extension
+```
+You can find step-by-step information [here at Chrome Documentation](https://developer.chrome.com/extensions/getstarted) to set up development environment for the extension.
 ---
 #### Logo Attribution: 
 
