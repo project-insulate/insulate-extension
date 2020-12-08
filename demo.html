@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta name="monetization" content="$ilp.uphold.com/H3NqAwkm9g3W">
+    <meta name="insulate-id" content="16ebdcd5b3067e95fe7146e5b15052dd27618615fb2296b5">
+</head>
+
+<body>
+    <h3>Demo Page for Project insulate</h3>
+    <div>Insulate Transaction Id: <b><span id="insulateId">...</span></b></div>
+</body>
+
+<script>
+    let insulateIdElement = document.getElementById('insulateId');
+
+    // **** You can wrap the event listener code around monetization check, but is not needed ****
+
+    // if (document.monetization) {
+    //      document.monetization.addEventListener('monetizationstart', (e) => {
+
+    // ----------------------- main event listener: start -------------
+    window.addEventListener("message", function (event) {
+        // We only accept messages from ourselves
+        if (event.source != window)
+            return;
+
+        if (event.data.type && (event.data.type == "insulateTransactionId")) {
+            console.log("insulateTransactionId received: " + event.data.text)
+            insulateIdElement.textContent = event.data.text;
+        }
+    }, false)
+        // ----------------------- main event listener: end ---------------
+
+            // });
+        // }
+
+</script>
+
+</html>

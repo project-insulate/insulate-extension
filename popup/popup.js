@@ -5,7 +5,7 @@ function login() {
   // Step 2: Initiate Web Auth Flow
   // Step 3: Use /api/login to either create new user or login - get custom token
   // Step 4: Login firebase using this custom token
-  // ! TODO - Step 5: Show on UI that the login is complete
+  // Step 5: Show on UI that the login is complete
 
   console.log("Initiate login")
 
@@ -20,7 +20,7 @@ function login() {
       const authCode = url.searchParams.get("code");
 
       // Step 3
-      fetch("http://localhost:8000/api/user/login", {
+      fetch("https://project-insulate.herokuapp.com/api/user/login", {
         method: "post",
         body: JSON.stringify({
           authCode: authCode

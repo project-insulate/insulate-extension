@@ -1,4 +1,4 @@
-console.info("Initiate background.js for Project Insulate");
+// console.info("Initiate background.js for Project Insulate");
 
 // ********* Firebase setup ***********
 
@@ -53,10 +53,9 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
   // Case 1: Login using customToken 
   if (request.customToken) {
-    console.log("Request object contains customToken");
     try {
       const user = await firebase.auth().signInWithCustomToken(request.customToken);
-      console.log("User logged in!");
+      console.log("Insulate extension: User logged in!");
       chrome.runtime.sendMessage({
         loginComplete: true
       })
@@ -88,7 +87,6 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
         })
       }
     } catch (error) {
-      console.error("fetching access token failed", error);
       chrome.tabs.sendMessage(activeTabId, {
         type: 'access_token',
       })
@@ -97,7 +95,6 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
   // Case 4: On initial load of popup.js, provide current user login status
   else if (request.isUserLoggedIn) {
-    console.log("firebase.auth().currentUser", firebase.auth().currentUser)
     if (firebase.auth().currentUser) {
       chrome.runtime.sendMessage({
         type: "userLoggedInCheck",

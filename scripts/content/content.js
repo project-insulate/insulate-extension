@@ -23,12 +23,12 @@ function getMetas() {
 // save meta values to local storage for popup.js to pick up
 function saveMetas(metas) {
   chrome.storage.local.set({ metas }, function () {
-    console.log("Value is set to ", metas);
+    // console.log("Value is set to ", metas);
   });
 }
 
 function checkIfBackendPushRequired(metas) {
-  //  TODO:  cache values for 5 minutes
+  //  ? cache values for 5 minutes
   if (metas.monetization && metas.insulateId) {
     return true;
   }
@@ -38,7 +38,6 @@ function checkIfBackendPushRequired(metas) {
 
 function initBlock() {
   if (checkIfBackendPushRequired(metaValues)) {
-    console.log("fetch latest access_token");
     chrome.runtime.sendMessage({ accessTokenRequired: true });
   }
 }
@@ -55,10 +54,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
   // Case 2: Request for access token
   else if (request.type === 'access_token') {
-    console.log("listen for latest access_token push");
     if (request.accessToken) {
 
-      fetch("http://localhost:8000/api/block", {
+      fetch("https://project-insulate.herokuapp.com/api/block", {
         method: "post",
         body: JSON.stringify({
           paymentPointer: metaValues.monetization,
@@ -76,7 +74,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           if (data.errors) {
             throw new Error("Failed to add the block", data);
           }
-          console.log("transactionId", data);
+          console.log("Insulate extension: transactionId", data);
           window.postMessage({ type: "insulateTransactionId", text: data.transactionId }, "*")
         });
     }

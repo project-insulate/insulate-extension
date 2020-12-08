@@ -1,7 +1,7 @@
 {
   "name": "insulate-extension",
   "description": "An extension to support Project Insulate",
-  "version": "1.0.1",
+  "version": "0.1.0",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "popup/popup.html",
@@ -23,5 +23,10 @@
     "identity",
     "http://*/",
     "https://*/"
-  ]
+  ],
+  "icons": {
+    "16": "popup/assets/enter16.png",
+    "48": "popup/assets/enter48.png",
+    "128": "popup/assets/enter128.png"
+  }
 }
