@@ -32,7 +32,9 @@ To run Chrome extension locally, firstly:
 git clone https://github.com/project-insulate/insulate-extension.git
 cd insulate-extension
 ```
+
 You can find step-by-step information [here at Chrome Documentation](https://developer.chrome.com/extensions/getstarted) to set up development environment for the extension.
+
 ---
 #### Logo Attribution: 
 
