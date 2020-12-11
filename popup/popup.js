@@ -1,51 +1,10 @@
 // ********* Functions ***********
 
 function login() {
-  // Step 1: Prepare URL fro Chrome Web Auth Flow
-  // Step 2: Initiate Web Auth Flow
-  // Step 3: Use /api/login to either create new user or login - get custom token
-  // Step 4: Login firebase using this custom token
-  // Step 5: Show on UI that the login is complete
-
   console.log("Initiate login")
-
-  // Step 1
-  let fullURL = "https://coil.com/oauth/auth?response_type=code&scope=simple_wm openid&client_id=360c3e4f-52b3-4355-a711-eae313e529fe&state=b5f1872f-9d32-5f31-819d-5a4daeab4ea9&redirect_uri=https://kpafcniimffgahocmkkmjappffdmdapg.chromiumapp.org/provider_cb"
-
-  // Step 2
-  chrome.identity.launchWebAuthFlow(
-    { url: fullURL, interactive: true },
-    function (redirect_url) {
-      const url = new URL(redirect_url);
-      const authCode = url.searchParams.get("code");
-
-      // Step 3
-      fetch("https://project-insulate.herokuapp.com/api/user/login", {
-        method: "post",
-        body: JSON.stringify({
-          authCode: authCode
-        }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-        .then(async (response) => {
-          return await response.json();
-        })
-        .then(function (data) {
-          if (data.errors) {
-            throw new Error("Failed to log in", data);
-          }
-
-          const customToken = data["customToken"];
-
-          // Step 4
-          chrome.runtime.sendMessage({
-            customToken: customToken
-          });
-        });
-
-    });
+  chrome.runtime.sendMessage({
+    login: true
+  });
 }
 
 function logout() {

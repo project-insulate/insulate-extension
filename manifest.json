@@ -1,7 +1,7 @@
 {
-  "name": "insulate-extension",
-  "description": "An extension to support Project Insulate",
-  "version": "0.1.0",
+  "name": "Project Insulate",
+  "description": "An extension to provider viewers access to web monetized websites",
+  "version": "0.1.3",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "popup/popup.html",
@@ -21,8 +21,8 @@
     "activeTab",
     "storage",
     "identity",
-    "http://*/",
-    "https://*/"
+    "https://coil.com/*",
+    "https://project-insulate.herokuapp.com/*"
   ],
   "icons": {
     "16": "popup/assets/enter16.png",
