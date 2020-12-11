@@ -2,18 +2,11 @@
 
 Project Insulate aims to protect an API call used by a provider to send data when dependent on Web Monetization. Currently, the only way to fetch data is to keep the endpoint public if no paid-user login is present on the UI. Also, this project ensures no user PPI is shared with the provider to maintain the privacy component of the Web Monetization technology.
 
-## Chrome Web Store
-**TODO: insert extension live link**
+### Follow project at: [Web Monetization Community: Project Insulate](https://community.webmonetization.org/projectinsulate)
+### Published at [Chrome Web Store](https://chrome.google.com/webstore/detail/project-insulate/cjadajociaammcjggipgndckjbjadnig)
 
-## Screenshots
-**TODO: add better screenshots**
 
-<p float="left">
-  <img src="https://i.imgur.com/YsjDyk6.png" width="300" />
-  <img src="https://i.imgur.com/P5e1eBt.png" width="300" /> 
-</p>
-
-## How it works?
+## How does it work?
 ### Case 1: Provider (any one providing data and trying to secure API call)
 Firstly, you would need to register with Project Insulate using the instructions given in [API README](https://github.com/project-insulate/insulate-api) to get a `clientId` and `clientSecret`. 
 
@@ -25,6 +18,12 @@ Now, provider's backend can send this `transactionId` with the `clientSecret` an
 
 ### Case 2: Viewer
 Simply download the extension and sign in with Coil. Extension will automatically deal with updating Insulate backend whenever a page with valid `monetization` and `insulate-id` meta tags are found, and provider can provide you access **without** knowing who the user is, mainting the privacy of the user.
+
+## Screenshots
+<img src="https://i.imgur.com/RdXcCxu.png" style="margin-bottom: 20px"/>
+<img src="https://i.imgur.com/R57bUMk.png" style="margin-bottom: 20px"/>
+<img src="https://i.imgur.com/6baHuUc.png" style="margin-bottom: 20px"/>
+
 
 ## Running locally
 To run Chrome extension locally, firstly:
